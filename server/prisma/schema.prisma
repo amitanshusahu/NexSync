@@ -1,0 +1,125 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       String  @id @default(cuid())
+  username String  @unique
+  password String?
+
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  createdBy String   @default("system")
+  updatedBy String   @default("system")
+}
+
+model Project {
+  id   String @id @default(cuid())
+  name String @unique
+
+  isActive  Boolean     @default(true)
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+  createdBy String      @default("system")
+  updatedBy String      @default("system")
+  Task      Task[]
+  Note      Note[]
+  AuthKey   AuthKey[]
+  Highlight Highlight[]
+}
+
+enum TaskPriority {
+  P1
+  P2
+  P3
+  UI
+  UX
+  BUG
+}
+
+model Task {
+  id          String       @id @default(cuid())
+  description String
+  completed   Boolean      @default(false)
+  priority    TaskPriority @default(P3)
+  projectId   String?
+  project     Project?     @relation(fields: [projectId], references: [id])
+  remarks     String?
+
+  isActive   Boolean      @default(true)
+  createdAt  DateTime     @default(now())
+  updatedAt  DateTime     @updatedAt
+  createdBy  String       @default("system")
+  updatedBy  String       @default("system")
+  AssignTask AssignTask[]
+}
+
+model AssignTask {
+  id        String  @id @default(cuid())
+  taskId    String  @unique
+  completed Boolean @default(false)
+  task      Task    @relation(fields: [taskId], references: [id])
+
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  createdBy String   @default("system")
+  updatedBy String   @default("system")
+}
+
+model Note {
+  id        String   @id @default(cuid())
+  content   String
+  projectId String?
+  project   Project? @relation(fields: [projectId], references: [id])
+
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  createdBy String   @default("system")
+  updatedBy String   @default("system")
+}
+
+model AuthKey {
+  id        String   @id @default(cuid())
+  content   String
+  projectId String?
+  project   Project? @relation(fields: [projectId], references: [id])
+
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  createdBy String   @default("system")
+  updatedBy String   @default("system")
+}
+
+model Highlight {
+  id        String   @id @default(cuid())
+  content   String
+  projectId String?
+  project   Project? @relation(fields: [projectId], references: [id])
+
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  createdBy String   @default("system")
+  updatedBy String   @default("system")
+}
+
+model Reminder {
+  id       String   @id @default(cuid())
+  content  String
+  dateTime DateTime
+
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  createdBy String   @default("system")
+  updatedBy String   @default("system")
+}
