@@ -7,6 +7,8 @@ import AppLayout from "./components/ui/Layout/AppLayout";
 import type { JSX } from "react";
 import Task from "./components/pages/Task/Task";
 import ProjectTasks from "./components/pages/Task/ProjectTasks";
+import NotePage from "./components/pages/Note/NotePage";
+import ProjectNotes from "./components/pages/Note/ProjectNotes";
 
 type Route = {
   path: string;
@@ -56,6 +58,25 @@ export const routes: Route = [
     element: (
       <AppLayout>
         <ProjectTasks />
+      </AppLayout>
+    ),
+    menu: false,
+  },
+  {
+    path: '/notes',
+    element: (
+      <AppLayout>
+        <NotePage />
+      </AppLayout>
+    ),
+    menu: true,
+    activeFor: ['/project/notes'],
+  },
+  {
+    path: '/project/notes',
+    element: (
+      <AppLayout>
+        <ProjectNotes />
       </AppLayout>
     ),
     menu: false,

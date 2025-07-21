@@ -144,7 +144,7 @@ export async function getUpdates(ctx: CommandContext<Context>) {
 
 
 export async function createNote(ctx: CommandContext<Context>) {
-  const description = ctx.message?.text?.replace("/task", "").replace(/@\w+/g, "").trim();
+  const description = ctx.message?.text?.replace("/note", "").replace(/@\w+/g, "").trim();
   const username = ctx.from?.username;
 
   await checkLogin(ctx);
@@ -164,7 +164,7 @@ export async function createNote(ctx: CommandContext<Context>) {
 }
 
 export async function createAuthKey(ctx: CommandContext<Context>) {
-  const description = ctx.message?.text?.replace("/task", "").replace(/@\w+/g, "").trim();
+  const description = ctx.message?.text?.replace("/auth", "").replace(/@\w+/g, "").trim();
   const username = ctx.from?.username;
 
   await checkLogin(ctx);
