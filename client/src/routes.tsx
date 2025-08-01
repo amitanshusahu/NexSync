@@ -9,6 +9,8 @@ import Task from "./components/pages/Task/Task";
 import ProjectTasks from "./components/pages/Task/ProjectTasks";
 import NotePage from "./components/pages/Note/NotePage";
 import ProjectNotes from "./components/pages/Note/ProjectNotes";
+import AuthKeyPage from "./components/pages/AuthKey/AuthKeyPage";
+import ProjectAuthKeys from "./components/pages/AuthKey/ProjectAuthKeys";
 
 type Route = {
   path: string;
@@ -77,6 +79,25 @@ export const routes: Route = [
     element: (
       <AppLayout>
         <ProjectNotes />
+      </AppLayout>
+    ),
+    menu: false,
+  },
+  {
+    path: '/auth-keys',
+    element: (
+      <AppLayout>
+        <AuthKeyPage />
+      </AppLayout>
+    ),
+    menu: true,
+    activeFor: ['/project/auth-keys'],
+  },
+  {
+    path: '/project/auth-keys',
+    element: (
+      <AppLayout>
+        <ProjectAuthKeys />
       </AppLayout>
     ),
     menu: false,

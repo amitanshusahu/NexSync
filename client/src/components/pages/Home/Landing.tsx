@@ -4,6 +4,7 @@ import { useState } from 'react';
 export default function Landing() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeFeature, setActiveFeature] = useState(0);
+  const thisYear = new Date().getFullYear();
 
   const features = [
     {
@@ -368,7 +369,7 @@ export default function Landing() {
               <Bot className="h-6 w-6 text-primary-light" />
               <span className="text-lg font-semibold text-gray-900">TaskFlow</span>
             </div>
-            <p className="text-sm text-gray-500">© 2023 TaskFlow. All rights reserved.</p>
+            <p className="text-sm text-gray-500">© {thisYear} TaskFlow. All rights reserved.</p>
           </div>
         </div>
       </footer>

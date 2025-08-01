@@ -22,7 +22,7 @@ export const API_ROUTES = {
   },
   AUTH_KEY: {
     GET_AUTH_KEY_BY_PROJECT: (projectId: string) =>
-      `${BASE_URL}/api/project/${projectId}/auth-key`,
+      `${BASE_URL}/api/project/${projectId}/auth/key`,
   },
 } as const;
 
