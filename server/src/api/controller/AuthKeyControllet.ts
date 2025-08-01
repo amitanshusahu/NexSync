@@ -9,15 +9,17 @@ export async function getAuthKeyByProjectId(req: Request, res: Response): Promis
       return res.status(400).json({ message: "Project ID is required" });
     }
 
-    const authKey = await prisma.authKey.findFirst({
+    const authKey = await prisma.authKey.findMany({
       where: {
         projectId: projectId,
       },
+      include: {
+        project: true,
+      },
+      orderBy: {
+        createdAt: 'desc',
+      },
     });
-
-    if (!authKey) {
-      return res.status(404).json({ message: "Auth key not found for this project" });
-    }
 
     return res.status(200).json({
       success: true,

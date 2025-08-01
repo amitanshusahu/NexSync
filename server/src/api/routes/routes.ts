@@ -26,6 +26,6 @@ router.get('/projects', getProjects);
 router.get('/project/:projectId/notes', getNotesByProject);
 
 // auth key route
-router.get('/project/:projectId/auth-key', getAuthKeyByProjectId);
+router.get('/project/:projectId/auth/key', getAuthKeyByProjectId);
 
 export default router;
