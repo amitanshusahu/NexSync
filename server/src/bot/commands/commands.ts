@@ -185,7 +185,7 @@ export async function createAuthKey(ctx: CommandContext<Context>) {
 export async function getLogin(ctx: CommandContext<Context>) {
   const username = ctx.from?.username;
   const userId = ctx.from?.id;
-  const link = `[Site Link](https://nextask.vercel.app)`
+  const link = `[Site Link](https://nex-sync-virid.vercel.app/)`
 
   if (!userId) {
     return ctx.reply("Error: Could not retrieve user information.");
