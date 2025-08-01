@@ -6,7 +6,7 @@ import { useSearchParams } from "react-router-dom";
 import { getCoreRowModel, useReactTable, type ColumnDef } from "@tanstack/react-table";
 import { TanstackTable } from "../../lazy/TanstackTable";
 import { useState, useMemo } from "react";
-import { ListFilter } from "lucide-react";
+import { CheckCheckIcon, CheckCircle, ListFilter } from "lucide-react";
 
 interface TaskResponse extends Response {
   data: {
@@ -111,6 +111,26 @@ export default function TaskTable() {
       accessorKey: 'createdBy',
       header: 'Created By',
     },
+    {
+      accessorKey: 'updatedAt',
+      header: 'Updated At',
+      cell: info => new Date(info.getValue() as string).toLocaleString(),
+    },
+    {
+      id: 'actions',
+      header: 'Actions',
+      cell: ({ row }) => (
+        <div className="flex gap-2">
+          <button
+            className="text-blue-500 hover:underline"
+            onClick={() => taskCompletedMutation.mutate(row.original.id)}
+          >
+            {row.original.completed ? <CheckCheckIcon size={16} color="green" /> : <CheckCircle size={18} /> }
+          </button>
+        </div>
+      ),
+      enableSorting: false,
+    }
   ];
 
   const [pagination, setPagination] = useState({

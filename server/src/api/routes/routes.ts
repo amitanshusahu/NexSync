@@ -17,7 +17,7 @@ router.get('/auth/me', Auth, me);
 router.get('/tasks', getTasks);
 router.get('/tasks/updates', getUpdates);
 router.get('/project/:projectId/tasks', getTasksByProject);
-router.get('/task/complete/:taskId', completeTask);
+router.post('/task/complete/:taskId', completeTask);
 
 // project routes
 router.get('/projects', getProjects);
