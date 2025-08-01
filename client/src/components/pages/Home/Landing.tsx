@@ -1,10 +1,12 @@
 import { ArrowRight, Bot, Check, ChevronDown, Command, LayoutDashboard, MessageSquare, Plus, Rocket, Settings, Slack, Smartphone, Users, Zap } from 'lucide-react';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function Landing() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeFeature, setActiveFeature] = useState(0);
   const thisYear = new Date().getFullYear();
+  const router = useNavigate();
 
   const features = [
     {
@@ -52,8 +54,13 @@ export default function Landing() {
         </div>
 
         <div className="flex items-center space-x-4">
-          <button className="hidden md:block text-gray-600 hover:text-gray-900 transition-colors">Sign In</button>
-          <button className="bg-primary-light text-white px-4 py-2 rounded-lg hover:bg-primary transition-colors flex items-center space-x-1">
+          <button className="hidden md:block text-gray-600 hover:text-gray-900 transition-colors"
+            onClick={() => router('/login')}
+          >Sign In</button>
+          <button
+            className="bg-primary-light text-white px-4 py-2 rounded-lg hover:bg-primary transition-colors flex items-center space-x-1"
+            onClick={() => router('/login')}
+          >
             <span>Get Started</span>
             <ArrowRight className="h-4 w-4" />
           </button>
@@ -101,7 +108,10 @@ export default function Landing() {
           </p>
 
           <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4">
-            <button className="bg-primary-light text-white px-6 py-3 rounded-lg hover:bg-primary transition-colors flex items-center space-x-2">
+            <button className="bg-primary-light text-white px-6 py-3 rounded-lg hover:bg-primary transition-colors flex items-center space-x-2"
+              onClick={() => router('/login')}
+
+            >
               <span>Start Free Trial</span>
               <ArrowRight className="h-4 w-4" />
             </button>
