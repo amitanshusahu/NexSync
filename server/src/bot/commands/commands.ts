@@ -77,10 +77,11 @@ export async function createTask(ctx: CommandContext<Context>) {
   }
 
   if (description) {
+    const cleanedDescription = description.replace(/#\w+|\b(P[1-3]|UI|UX|BUG)\b/g, "").trim();
     const projectId = await getProjectId(ctx);
     await prisma.task.create({
       data: {
-        description: description,
+        description: cleanedDescription,
         createdBy: username || "unknown",
         priority: priority as TaskPriority,
         projectId
