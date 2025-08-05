@@ -101,7 +101,7 @@ export async function getUpdates(ctx: CommandContext<Context>) {
   const tasks = await prisma.task.findMany({
     where: {
       completed: true,
-      createdAt: {
+      updatedAt: {
         gte: startDate,
         lte: endDate,
       },
@@ -114,7 +114,7 @@ export async function getUpdates(ctx: CommandContext<Context>) {
       },
     },
     orderBy: {
-      createdAt: 'desc',
+      updatedAt: 'desc',
     },
   });
 
